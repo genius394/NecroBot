@@ -215,6 +215,8 @@ namespace PoGo.NecroBot.Logic.Tasks
                 if (session.LogicSettings.SnipeAtPokestops || session.LogicSettings.UseSnipeLocationServer)
                     await SnipePokemonTask.Execute(session, cancellationToken);
             }
+
+            await DisplayPokemonStatsTask.SaveActualPokemons(session);
         }
 
         private static async Task<List<FortData>> GetPokeStops(ISession session)

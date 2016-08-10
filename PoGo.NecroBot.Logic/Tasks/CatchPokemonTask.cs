@@ -24,7 +24,7 @@ namespace PoGo.NecroBot.Logic.Tasks
         public static int AmountOfBerries;
         private static Random Random => new Random((int)DateTime.Now.Ticks);
 
-        public static async Task Execute(ISession session, CancellationToken cancellationToken, dynamic encounter, MapPokemon pokemon,
+        public static async Task Execute(ISession session, CancellationToken cancellationToken, dynamic encounter, MapPokemon pokemon, bool usePokeBallOnly,
             FortData currentFortData = null, ulong encounterId = 0)
         {
             AmountOfBerries = 0;
@@ -36,7 +36,7 @@ namespace PoGo.NecroBot.Logic.Tasks
             float probability = encounter.CaptureProbability?.CaptureProbability_[0];
 
             // Check for pokeballs before proceeding
-            var pokeball = await GetBestBall(session, encounter, probability);
+            var pokeball = await GetBestBall(session, encounter, probability, usePokeBallOnly);
             if (pokeball == ItemId.ItemUnknown) return;
 
             //Calculate CP and IV
@@ -65,7 +65,7 @@ namespace PoGo.NecroBot.Logic.Tasks
                     attemptCounter > session.LogicSettings.MaxPokeballsPerPokemon))
                     break;
 
-                pokeball = await GetBestBall(session, encounter, probability);
+                pokeball = await GetBestBall(session, encounter, probability, usePokeBallOnly);
                 if (pokeball == ItemId.ItemUnknown)
                 {
                     session.EventDispatcher.Send(new NoPokeballEvent
@@ -259,7 +259,7 @@ namespace PoGo.NecroBot.Logic.Tasks
                      caughtPokemonResponse.Status == CatchPokemonResponse.Types.CatchStatus.CatchEscape);
         }
 
-        private static async Task<ItemId> GetBestBall(ISession session, dynamic encounter, float probability)
+        private static async Task<ItemId> GetBestBall(ISession session, dynamic encounter, float probability, bool usePokeBallOnly)
         {
             var pokemonCp = encounter is EncounterResponse
                 ? encounter.WildPokemon?.PokemonData?.Cp
@@ -274,9 +274,15 @@ namespace PoGo.NecroBot.Logic.Tasks
                         : encounter?.PokemonData), 2);
 
             var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
+            if (usePokeBallOnly && pokeBallsCount > 0)
+            {
+                return ItemId.ItemPokeBall;
+            }
+
             var greatBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
             var ultraBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemUltraBall);
             var masterBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemMasterBall);
+
 
             if (masterBallsCount > 0 && (
                     (!session.LogicSettings.PokemonToUseMasterball.Any() && (

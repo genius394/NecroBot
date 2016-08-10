@@ -528,6 +528,8 @@ namespace PoGo.NecroBot.Logic
         public bool UsePokemonToNotCatchFilter;
         [DefaultValue(false)]
         public bool UsePokemonSniperFilterOnly;
+        [DefaultValue(true)]
+        public bool UsePokeBallOnlySnipe;
         public List<KeyValuePair<ItemId, int>> ItemRecycleFilter = new List<KeyValuePair<ItemId, int>>
         {
             new KeyValuePair<ItemId, int>(ItemId.ItemUnknown, 0),
@@ -1437,5 +1439,7 @@ namespace PoGo.NecroBot.Logic
         public int TotalAmountOfPotionsToKeep => _settings.TotalAmountOfPotionsToKeep;
         public int TotalAmountOfRevivesToKeep => _settings.TotalAmountOfRevivesToKeep;
         public int TotalAmountOfBerriesToKeep => _settings.TotalAmountOfBerriesToKeep;
+
+        public bool UsePokeBallOnlySnipe => _settings.UsePokeBallOnlySnipe;
     }
 }

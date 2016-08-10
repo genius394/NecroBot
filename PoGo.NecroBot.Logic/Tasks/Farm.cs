@@ -79,6 +79,7 @@ namespace PoGo.NecroBot.Logic.Service
             }
 
             GetPokeDexCount.Execute(_session, cancellationToken).Wait(cancellationToken);
+            
         }
     }
 }

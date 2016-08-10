@@ -163,8 +163,8 @@ namespace PoGo.NecroBot.Logic.Tasks
         public static async Task<bool> CheckPokeballsToSnipe(int minPokeballs, ISession session,
             CancellationToken cancellationToken)
         {
-            var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
-            pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
+            //var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
+            var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
             pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemUltraBall);
             pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemMasterBall);
 
@@ -446,7 +446,7 @@ namespace PoGo.NecroBot.Logic.Tasks
                         Longitude = CurrentLongitude
                     });
 
-                    await CatchPokemonTask.Execute(session, cancellationToken, encounter, pokemon);
+                    await CatchPokemonTask.Execute(session, cancellationToken, encounter, pokemon, false);
                     catchedPokemon = true;
                 }
                 else if (encounter.Status == EncounterResponse.Types.Status.PokemonInventoryFull)
