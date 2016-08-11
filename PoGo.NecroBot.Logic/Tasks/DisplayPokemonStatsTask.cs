@@ -19,6 +19,8 @@ namespace PoGo.NecroBot.Logic.Tasks
 
         public static List<ulong> PokemonIdcp = new List<ulong>();
 
+        private static DateTime _lastDump = DateTime.MinValue;
+
         public static async Task Execute(ISession session)
         {
             var myPokemonFamilies = await session.Inventory.GetPokemonFamilies();
@@ -81,11 +83,15 @@ namespace PoGo.NecroBot.Logic.Tasks
                 {
                     session.EventDispatcher.Send(new ErrorEvent { Message = $"Could not write {dumpFileName} dump file." });
                 }
+                _lastDump = DateTime.Now;
             }
         }
 
         public static async Task SaveActualPokemons(ISession session)
         {
+            if (_lastDump.AddMinutes(session.LogicSettings.MinDelayBetweenDump) > DateTime.Now)
+                return;
+
             var myPokemonFamilies = await session.Inventory.GetPokemonFamilies();
             var myPokeSettings = await session.Inventory.GetPokemonSettings();
 
@@ -111,6 +117,7 @@ namespace PoGo.NecroBot.Logic.Tasks
                     session.EventDispatcher.Send(new ErrorEvent { Message = $"Could not write {dumpFileName} dump file." });
                 }
             }
+            _lastDump = DateTime.Now;
         }
     }
 }

@@ -197,5 +197,7 @@ namespace PoGo.NecroBot.Logic
         bool StartupWelcomeDelay { get; }
 
         bool UsePokeBallOnlySnipe { get; }
+
+        int MinDelayBetweenDump { get; }
     }
 }

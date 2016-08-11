@@ -530,6 +530,8 @@ namespace PoGo.NecroBot.Logic
         public bool UsePokemonSniperFilterOnly;
         [DefaultValue(true)]
         public bool UsePokeBallOnlySnipe;
+
+        [DefaultValue(60)] public int MinDelayBetweenDump;
         public List<KeyValuePair<ItemId, int>> ItemRecycleFilter = new List<KeyValuePair<ItemId, int>>
         {
             new KeyValuePair<ItemId, int>(ItemId.ItemUnknown, 0),
@@ -1441,5 +1443,6 @@ namespace PoGo.NecroBot.Logic
         public int TotalAmountOfBerriesToKeep => _settings.TotalAmountOfBerriesToKeep;
 
         public bool UsePokeBallOnlySnipe => _settings.UsePokeBallOnlySnipe;
+        public int MinDelayBetweenDump => _settings.MinDelayBetweenDump;
     }
 }
