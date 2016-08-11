@@ -71,11 +71,11 @@ namespace PoGo.NecroBot.Logic.Tasks
                 try
                 {
                     Dumper.ClearDumpFile(session, dumpFileName);
-                    Dumper.Dump(session, "pokemonid,pokemonlevel,cp,perfection,stamina,staminamax,move1,move2,candy,ownername,origin,heightm,weightkg,individualattack,individualdefense,individualstamina,cpmultiplier,battlesattacked,battlesdefended,creationtimems,numupgrades,additionalcpmultiplier,favorite,nickname", dumpFileName);
+                    Dumper.Dump(session, "pokemonid;pokemonlevel;cp;perfection;stamina;staminamax;move1;move2;candy;ownername;origin;heightm;weightkg;individualattack;individualdefense;individualstamina;cpmultiplier;battlesattacked;battlesdefended;creationtimems;numupgrades;additionalcpmultiplier;favorite;nickname", dumpFileName);
                     foreach (var pokemon in allPokemonInBag)
                     {
                         Dumper.Dump(session,
-                            $"{session.Translation.GetPokemonTranslation(pokemon.PokemonId)},{PokemonInfo.GetLevel(pokemon)},{pokemon.Cp},{PokemonInfo.CalculatePokemonPerfection(pokemon)},{pokemon.Stamina},{pokemon.StaminaMax},{pokemon.Move1},{pokemon.Move2},{PokemonInfo.GetCandy(pokemon, myPokemonFamilies, myPokeSettings)},{pokemon.OwnerName},{pokemon.Origin},{pokemon.HeightM},{pokemon.WeightKg},{pokemon.IndividualAttack},{pokemon.IndividualDefense},{pokemon.IndividualStamina},{pokemon.CpMultiplier},{pokemon.BattlesAttacked},{pokemon.BattlesDefended},{pokemon.CreationTimeMs},{pokemon.NumUpgrades},{pokemon.AdditionalCpMultiplier},{pokemon.Favorite},{pokemon.Nickname}",
+                            $"{session.Translation.GetPokemonTranslation(pokemon.PokemonId)};{PokemonInfo.GetLevel(pokemon)};{pokemon.Cp};{PokemonInfo.CalculatePokemonPerfection(pokemon)};{pokemon.Stamina};{pokemon.StaminaMax};{pokemon.Move1};{pokemon.Move2};{PokemonInfo.GetCandy(pokemon, myPokemonFamilies, myPokeSettings)};{pokemon.OwnerName};{pokemon.Origin};{pokemon.HeightM};{pokemon.WeightKg};{pokemon.IndividualAttack};{pokemon.IndividualDefense};{pokemon.IndividualStamina};{pokemon.CpMultiplier};{pokemon.BattlesAttacked};{pokemon.BattlesDefended};{pokemon.CreationTimeMs};{pokemon.NumUpgrades};{pokemon.AdditionalCpMultiplier};{pokemon.Favorite};{pokemon.Nickname}",
                             dumpFileName);
                     }
                 }
@@ -103,11 +103,11 @@ namespace PoGo.NecroBot.Logic.Tasks
                 try
                 {
                     Dumper.ClearDumpFile(session, dumpFileName);
-                    Dumper.Dump(session, "pokemonid,pokemonlevel,cp,perfection,stamina,staminamax,move1,move2,candy,ownername,origin,heightm,weightkg,individualattack,individualdefense,individualstamina,cpmultiplier,battlesattacked,battlesdefended,creationtimems,numupgrades,additionalcpmultiplier,favorite,nickname", dumpFileName);
+                    Dumper.Dump(session, "pokemonid;pokemonlevel;cp;perfection;stamina;staminamax;move1;move2;candy;ownername;origin;heightm;weightkg;individualattack;individualdefense;individualstamina;cpmultiplier;battlesattacked;battlesdefended;creationtimems;numupgrades;additionalcpmultiplier;favorite;nickname", dumpFileName);
                     foreach (var pokemon in allPokemons)
                     {
                         Dumper.Dump(session,
-                            $"{session.Translation.GetPokemonTranslation(pokemon.PokemonId)},{PokemonInfo.GetLevel(pokemon)},{pokemon.Cp},{PokemonInfo.CalculatePokemonPerfection(pokemon)},{pokemon.Stamina},{pokemon.StaminaMax},{pokemon.Move1},{pokemon.Move2},{PokemonInfo.GetCandy(pokemon, myPokemonFamilies, myPokeSettings)},{pokemon.OwnerName},{pokemon.Origin},{pokemon.HeightM},{pokemon.WeightKg},{pokemon.IndividualAttack},{pokemon.IndividualDefense},{pokemon.IndividualStamina},{pokemon.CpMultiplier},{pokemon.BattlesAttacked},{pokemon.BattlesDefended},{pokemon.CreationTimeMs},{pokemon.NumUpgrades},{pokemon.AdditionalCpMultiplier},{pokemon.Favorite},{pokemon.Nickname}",
+                            $"{session.Translation.GetPokemonTranslation(pokemon.PokemonId)};{PokemonInfo.GetLevel(pokemon)};{pokemon.Cp};{PokemonInfo.CalculatePokemonPerfection(pokemon)};{pokemon.Stamina};{pokemon.StaminaMax};{pokemon.Move1};{pokemon.Move2};{PokemonInfo.GetCandy(pokemon, myPokemonFamilies, myPokeSettings)};{pokemon.OwnerName};{pokemon.Origin};{pokemon.HeightM};{pokemon.WeightKg};{pokemon.IndividualAttack};{pokemon.IndividualDefense};{pokemon.IndividualStamina};{pokemon.CpMultiplier};{pokemon.BattlesAttacked};{pokemon.BattlesDefended};{pokemon.CreationTimeMs};{pokemon.NumUpgrades};{pokemon.AdditionalCpMultiplier};{pokemon.Favorite};{pokemon.Nickname}",
                             dumpFileName);
                     }
                     session.EventDispatcher.Send(new NoticeEvent { Message = $"Pokemons guardados {dumpFileName}."});
