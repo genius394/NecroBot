@@ -193,7 +193,15 @@ namespace PoGo.NecroBot.Logic.Common
         PokedexCatchedTelegram,
         PokedexPokemonCatchedTelegram,
         PokedexNeededTelegram,
-        PokedexPokemonNeededTelegram
+        PokedexPokemonNeededTelegram,
+        LoggedInTelegram,
+        LoginFailedTelegram,
+        NotLoggedInTelegram,
+        Unproxied,
+        Proxied,
+        FixProxySettings,
+        UsageHelp,
+        LoginRemainingTime
     }
 
     public class Translation : ITranslation
@@ -458,6 +466,15 @@ namespace PoGo.NecroBot.Logic.Common
             new KeyValuePair<TranslationString, string>(TranslationString.PokedexPokemonCatchedTelegram, "#{0} Name: {1} | Catched: {2} | Encountered: {3} \n"),
             new KeyValuePair<TranslationString, string>(TranslationString.PokedexNeededTelegram, "--- Pokedex needed --- \n"),
             new KeyValuePair<TranslationString, string>(TranslationString.PokedexPokemonNeededTelegram, "#{0}# Name: {1} \n"),
+            new KeyValuePair<TranslationString, string>(TranslationString.LoggedInTelegram, "You have been logged in sucessfully. Session is valid for 5 Minutes"),
+            new KeyValuePair<TranslationString, string>(TranslationString.LoginFailedTelegram, "Wrong Password or wrong Syntax! Use /login PASSWORD"),
+            new KeyValuePair<TranslationString, string>(TranslationString.NotLoggedInTelegram, "You are not logged in, use /login PASSWORD"),
+            new KeyValuePair<TranslationString, string>(TranslationString.Proxied, "Your IP is: {0} | Proxy IP is: {1}"),
+            new KeyValuePair<TranslationString, string>(TranslationString.Unproxied, "Your IP is: {0}"),
+            new KeyValuePair<TranslationString, string>(TranslationString.FixProxySettings, "Press any key to exit so you can fix your proxy settings..."),
+            new KeyValuePair<TranslationString, string>(TranslationString.UsageHelp, "Invalid command arguments! \n Correct usage: \n {0}"),
+            new KeyValuePair<TranslationString, string>(TranslationString.LoginRemainingTime, "You are already logged in! \n Session valid for: ({0}:{1} seconds)")
+
         };
 
         [JsonProperty("PokemonStrings",
