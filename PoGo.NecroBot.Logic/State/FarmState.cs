@@ -14,9 +14,9 @@ namespace PoGo.NecroBot.Logic.State
 
         public async Task<IState> Execute(ISession session, CancellationToken cancellationToken)
         {
-            //await FarmPokestopsTask.ExecuteModified(session, cancellationToken);
+            await FarmPokestopsTask.ExecuteModified(session, cancellationToken);
 
-            //return this;
+            return this;
 
             if (session.LogicSettings.EvolveAllPokemonAboveIv || session.LogicSettings.EvolveAllPokemonWithEnoughCandy 
                || session.LogicSettings.UseLuckyEggsWhileEvolving || session.LogicSettings.KeepPokemonsThatCanEvolve)
