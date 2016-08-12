@@ -163,18 +163,13 @@ namespace PoGo.NecroBot.Logic.Tasks
         public static async Task<bool> CheckPokeballsToSnipe(int minPokeballs, ISession session,
             CancellationToken cancellationToken)
         {
-<<<<<<< HEAD
-            //var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
-            var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
-=======
             cancellationToken.ThrowIfCancellationRequested();
 
             // Refresh inventory so that the player stats are fresh
             await session.Inventory.RefreshCachedInventory();
 
-            var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
-            pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
->>>>>>> refs/remotes/NECROBOTIO/master
+            //var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemPokeBall);
+            var pokeBallsCount = await session.Inventory.GetItemAmountByType(ItemId.ItemGreatBall);
             pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemUltraBall);
             pokeBallsCount += await session.Inventory.GetItemAmountByType(ItemId.ItemMasterBall);
 
